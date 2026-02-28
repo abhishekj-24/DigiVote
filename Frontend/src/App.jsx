@@ -1,35 +1,30 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { LanguageProvider } from './contexts/LanguageContext';
+import Layout from './components/Layout';
+import Home from './pages/Home';
+import VoteFlow from './pages/VoteFlow';
+import VoterRegistration from './pages/VoterRegistration';
+import CandidateRegistration from './pages/CandidateRegistration';
+import HelpDesk from './pages/HelpDesk';
+import AdminConfig from './pages/AdminConfig';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <LanguageProvider>
+      <Router>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/vote" element={<VoteFlow />} />
+            <Route path="/voter-registration" element={<VoterRegistration />} />
+            <Route path="/candidate-registration" element={<CandidateRegistration />} />
+            <Route path="/help-desk" element={<HelpDesk />} />
+            <Route path="/admin" element={<AdminConfig />} />
+          </Routes>
+        </Layout>
+      </Router>
+    </LanguageProvider>
+  );
 }
 
-export default App
+export default App;
