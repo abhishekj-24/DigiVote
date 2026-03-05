@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axiosClient from '../utils/axiosClient';
 import { useLanguage } from '../contexts/LanguageContext';
 import FingerprintSimulator from '../components/FingerprintSimulator';
+import HardwareFingerprintCapture from '../components/HardwareFingerprintCapture';
 import { ArrowLeft, Check } from 'lucide-react';
 import { sha256 } from '../utils/sha256';
 
@@ -301,7 +302,14 @@ export default function VoterRegistration() {
               </div>
               <div>
                 <p className="text-sm font-medium text-slate-700 mb-2">{t.fingerprintLabel}</p>
-                <FingerprintSimulator onHash={setFingerprintHash} />
+                <div className="space-y-4">
+                  <HardwareFingerprintCapture onHash={setFingerprintHash} />
+                  <div className="text-xs text-slate-500">
+                    If the hardware connection is not available, you can also use the manual
+                    simulator below during development.
+                  </div>
+                  <FingerprintSimulator onHash={setFingerprintHash} />
+                </div>
               </div>
             </div>
           </div>

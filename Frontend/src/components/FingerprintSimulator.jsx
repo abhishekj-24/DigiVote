@@ -32,16 +32,17 @@ export default function FingerprintSimulator({ onHash }) {
         <Fingerprint className="w-10 h-10 text-slate-500" />
         <div className="flex-1">
           <label className="block text-sm font-medium text-slate-700 mb-1">
-            Fingerprint simulation (dev mode)
+            Fingerprint from sensor (paste ID)
           </label>
           <p className="text-xs text-slate-500 mb-2">
-            Enter a unique identifier (e.g. last 4 digits of Aadhar + name). Use the SAME value during registration and voting.
+            Run the Arduino fingerprint sketch, then paste the fingerprint ID it prints here. The
+            app will hash and store this value for secure matching.
           </p>
           <input
             type="text"
             value={value}
             onChange={(e) => setValue(e.target.value)}
-            placeholder="e.g. fingerprint_data_123"
+            placeholder="e.g. FPID_23 from Arduino serial monitor"
             className="w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
           />
         </div>
