@@ -216,36 +216,6 @@ export default function Home() {
               </Block>
 
               <Block
-                icon={UserPlus}
-                title={t.voterRegistration}
-                onClick={handleVoterReg}
-                disabled={!registrationOpen}
-              >
-                {registrationOpen ? (
-                  <p className="text-slate-200 text-xs sm:text-sm">
-                    Create your voter profile so you can participate when the election opens.
-                  </p>
-                ) : (
-                  <p className="mt-1 text-rose-200 text-xs sm:text-sm">{t.registrationClosed}</p>
-                )}
-              </Block>
-
-              <Block
-                icon={Users}
-                title={t.candidateRegistration}
-                onClick={handleCandidateReg}
-                disabled={!registrationOpen}
-              >
-                {registrationOpen ? (
-                  <p className="text-slate-200 text-xs sm:text-sm">
-                    Submit your candidacy and share your vision with your voters.
-                  </p>
-                ) : (
-                  <p className="mt-1 text-rose-200 text-xs sm:text-sm">{t.registrationClosed}</p>
-                )}
-              </Block>
-
-              <Block
                 icon={HelpCircle}
                 title={t.helpDesk}
                 onClick={() => navigate('/help-desk')}

@@ -16,7 +16,11 @@ const configSchema = new Schema(
       type: Date,
       default: null,
     },
-    registrationDeadline: {
+    candidateRegStart: {
+      type: Date,
+      default: null,
+    },
+    candidateRegEnd: {
       type: Date,
       default: null,
     },

@@ -13,7 +13,8 @@ async function getConfig(req, res) {
           electionStatus: 'registration',
           startTime: null,
           endTime: null,
-          registrationDeadline: null,
+          candidateRegStart: null,
+          candidateRegEnd: null,
         },
         serverTime: new Date().toISOString(),
       });
@@ -24,7 +25,8 @@ async function getConfig(req, res) {
         electionStatus: config.electionStatus,
         startTime: config.startTime,
         endTime: config.endTime,
-        registrationDeadline: config.registrationDeadline,
+        candidateRegStart: config.candidateRegStart,
+        candidateRegEnd: config.candidateRegEnd,
       },
       serverTime: new Date().toISOString(),
     });
@@ -34,21 +36,20 @@ async function getConfig(req, res) {
 }
 
 /**
- * Update election config (admin only - add admin auth in route)
+ * Update election config (admin only)
  */
 async function updateConfig(req, res) {
   try {
-    const { electionStatus, startTime, endTime, registrationDeadline } = req.body;
+    const { electionStatus, startTime, endTime, candidateRegStart, candidateRegEnd } = req.body;
     const config = await Config.findOneAndUpdate(
       {},
       {
         $set: {
           ...(electionStatus && { electionStatus }),
-          ...(startTime && { startTime: new Date(startTime) }),
-          ...(endTime && { endTime: new Date(endTime) }),
-          ...(registrationDeadline && {
-            registrationDeadline: new Date(registrationDeadline),
-          }),
+          ...(startTime ? { startTime: new Date(startTime) } : { startTime: null }),
+          ...(endTime ? { endTime: new Date(endTime) } : { endTime: null }),
+          ...(candidateRegStart ? { candidateRegStart: new Date(candidateRegStart) } : { candidateRegStart: null }),
+          ...(candidateRegEnd ? { candidateRegEnd: new Date(candidateRegEnd) } : { candidateRegEnd: null }),
         },
       },
       { upsert: true, new: true }
@@ -59,7 +60,8 @@ async function updateConfig(req, res) {
         electionStatus: config.electionStatus,
         startTime: config.startTime,
         endTime: config.endTime,
-        registrationDeadline: config.registrationDeadline,
+        candidateRegStart: config.candidateRegStart,
+        candidateRegEnd: config.candidateRegEnd,
       },
     });
   } catch (err) {

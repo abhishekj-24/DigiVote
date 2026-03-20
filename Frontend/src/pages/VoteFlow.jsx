@@ -208,11 +208,10 @@ export default function VoteFlow() {
               {candidates.map((c) => (
                 <div
                   key={c._id}
-                  className={`flex items-center gap-4 p-4 rounded-xl border-2 cursor-pointer transition ${
-                    selectedCandidate?._id === c._id
+                  className={`flex items-center gap-4 p-4 rounded-xl border-2 cursor-pointer transition ${selectedCandidate?._id === c._id
                       ? 'border-emerald-500 bg-emerald-50'
                       : 'border-slate-200 hover:border-emerald-300'
-                  }`}
+                    }`}
                   onClick={() => setSelectedCandidate(selectedCandidate?._id === c._id ? null : c)}
                 >
                   <img

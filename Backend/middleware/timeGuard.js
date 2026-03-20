@@ -1,19 +1,33 @@
 const Config = require('../model/Config');
 
+// Voter registration is always open — no time check needed
 async function checkRegistrationOpen(req, res, next) {
+  next();
+}
+
+// Candidate registration window is controlled by admin via candidateRegStart and candidateRegEnd
+async function checkCandidateRegistrationOpen(req, res, next) {
   try {
     const config = await Config.findOne().sort({ createdAt: -1 }).lean();
-    if (!config || !config.registrationDeadline) {
+    if (!config || !config.candidateRegStart || !config.candidateRegEnd) {
       return res.status(503).json({
         success: false,
-        message: 'Registration is not configured.',
+        message: 'Candidate registration window has not been configured by admin yet.',
       });
     }
     const now = new Date();
-    if (now > config.registrationDeadline) {
+    if (now < new Date(config.candidateRegStart)) {
       return res.status(403).json({
         success: false,
-        message: 'Registration is closed. Deadline has passed.',
+        message: 'Candidate registration has not started yet.',
+        candidateRegStart: config.candidateRegStart,
+      });
+    }
+    if (now > new Date(config.candidateRegEnd)) {
+      return res.status(403).json({
+        success: false,
+        message: 'Candidate registration window has closed.',
+        candidateRegEnd: config.candidateRegEnd,
       });
     }
     req.electionConfig = config;
@@ -64,11 +78,11 @@ async function getServerTime(req, res) {
       serverTime: new Date().toISOString(),
       config: config
         ? {
-            electionStatus: config.electionStatus,
-            startTime: config.startTime,
-            endTime: config.endTime,
-            registrationDeadline: config.registrationDeadline,
-          }
+          electionStatus: config.electionStatus,
+          startTime: config.startTime,
+          endTime: config.endTime,
+          registrationDeadline: config.registrationDeadline,
+        }
         : null,
     });
   } catch (err) {
@@ -76,5 +90,10 @@ async function getServerTime(req, res) {
   }
 }
 
-module.exports = { checkRegistrationOpen, checkVotingOpen, getServerTime };
+module.exports = {
+  checkRegistrationOpen,
+  checkCandidateRegistrationOpen,
+  checkVotingOpen,
+  getServerTime,
+};
 

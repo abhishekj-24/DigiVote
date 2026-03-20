@@ -6,7 +6,7 @@ const {
   listCandidates,
   searchCandidates,
 } = require('../controllers/candidateController');
-const { checkRegistrationOpen } = require('../middleware/timeGuard');
+const { checkCandidateRegistrationOpen } = require('../middleware/timeGuard');
 
 const upload = multer({
   storage: multer.memoryStorage(),
@@ -15,7 +15,7 @@ const upload = multer({
 
 router.post(
   '/register',
-  checkRegistrationOpen,
+  checkCandidateRegistrationOpen,
   upload.fields([
     { name: 'photoURL', maxCount: 1 },
     { name: 'symbolURL', maxCount: 1 },
