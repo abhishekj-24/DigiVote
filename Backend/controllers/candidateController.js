@@ -5,7 +5,7 @@ const { uploadToCloudinary } = require('../utils/cloudinary');
 const parseArray = (item) => {
   if (!item) return [];
   if (Array.isArray(item)) return item;
-  try { return JSON.parse(item); } catch(e) { return item.split(',').map(s=>s.trim()); }
+  try { return JSON.parse(item); } catch (e) { return item.split(',').map(s => s.trim()); }
 };
 
 /**
@@ -35,7 +35,7 @@ async function registerCandidate(req, res) {
     experience = parseArray(experience);
     achievements = parseArray(achievements);
     promises = parseArray(promises);
-    
+
     let parsedContact = {};
     if (contact) {
       if (typeof contact === 'string') {

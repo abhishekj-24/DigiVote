@@ -102,11 +102,12 @@ async function castVote(req, res) {
       message: 'Vote recorded successfully.',
     });
   } catch (err) {
-    await session.abortTransaction();
+    if (session) await session.abortTransaction();
     console.error('castVote error:', err);
     res.status(500).json({
       success: false,
-      message: 'Failed to record vote. Please try again.',
+      message: err.message || 'Failed to record vote. Please try again.',
+      error: err.name
     });
   } finally {
     session.endSession();

@@ -21,9 +21,9 @@ function ArrayInput({ label, icon: Icon, values, onChange, placeholder, color = 
           </div>
           <label className="block text-sm font-bold text-white tracking-tight uppercase tracking-[0.1em]">{label}</label>
         </div>
-        <button 
-          type="button" 
-          onClick={add} 
+        <button
+          type="button"
+          onClick={add}
           className="bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 px-3 py-1.5 rounded-xl border border-emerald-500/20 flex items-center gap-1.5 text-xs font-bold transition-all active:scale-95"
         >
           <Plus className="w-3.5 h-3.5" strokeWidth={3} /> {values.length === 0 ? 'Add First' : 'Add Item'}
@@ -39,9 +39,9 @@ function ArrayInput({ label, icon: Icon, values, onChange, placeholder, color = 
               placeholder={placeholder}
               className="flex-1 px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl focus:ring-2 focus:ring-emerald-500/50 outline-none transition-all placeholder:text-slate-700 text-sm font-medium"
             />
-            <button 
-              type="button" 
-              onClick={() => remove(i)} 
+            <button
+              type="button"
+              onClick={() => remove(i)}
               className="p-3 text-rose-500 hover:bg-rose-500/10 rounded-xl border border-transparent hover:border-rose-500/20 transition-all"
             >
               <X className="w-4 h-4" />
@@ -102,7 +102,7 @@ export default function CandidateRegistration() {
         achievements: form.achievements.filter(Boolean),
         promises: form.promises.filter(Boolean),
       };
-      
+
       const formData = new FormData();
       Object.keys(payload).forEach(key => {
         if (key === 'photoURL' || key === 'symbolURL') return;
@@ -180,51 +180,51 @@ export default function CandidateRegistration() {
           {/* Identity Section */}
           <div className="bg-slate-900/60 border border-slate-800/80 rounded-[40px] p-8 backdrop-blur-xl shadow-2xl relative overflow-hidden">
             <div className="flex items-center gap-4 mb-10">
-               <div className="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-2xl shadow-inner">
-                  <User className="w-6 h-6 text-emerald-400" />
-               </div>
-               <h2 className="text-2xl font-bold text-white tracking-tight">Identity & Profile</h2>
+              <div className="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-2xl shadow-inner">
+                <User className="w-6 h-6 text-emerald-400" />
+              </div>
+              <h2 className="text-2xl font-bold text-white tracking-tight">Identity & Profile</h2>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
               {/* Media Uploads */}
               <div className="md:col-span-4 space-y-8">
                 <div className="text-center">
-                   <p className={labelClasses}>Professional Photo</p>
-                   <div className="relative inline-block group">
-                      <div className="absolute -inset-1 bg-gradient-to-tr from-emerald-500/40 to-blue-500/40 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
-                      <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-slate-800 bg-slate-950 flex items-center justify-center">
-                        {photoPreview ? (
-                          <img src={photoPreview} alt="Preview" className="w-full h-full object-cover" />
-                        ) : (
-                          <ImageIcon className="w-10 h-10 text-slate-800" />
-                        )}
-                        <label className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-all flex flex-col items-center justify-center cursor-pointer">
-                          <Upload className="w-6 h-6 text-white mb-1" />
-                          <span className="text-[10px] text-white font-bold uppercase">Update</span>
-                          <input type="file" accept="image/*" onChange={(e) => handleFileChange(e, 'photo')} className="hidden" />
-                        </label>
-                      </div>
-                   </div>
+                  <p className={labelClasses}>Professional Photo</p>
+                  <div className="relative inline-block group">
+                    <div className="absolute -inset-1 bg-gradient-to-tr from-emerald-500/40 to-blue-500/40 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+                    <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-slate-800 bg-slate-950 flex items-center justify-center">
+                      {photoPreview ? (
+                        <img src={photoPreview} alt="Preview" className="w-full h-full object-cover" />
+                      ) : (
+                        <ImageIcon className="w-10 h-10 text-slate-800" />
+                      )}
+                      <label className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-all flex flex-col items-center justify-center cursor-pointer">
+                        <Upload className="w-6 h-6 text-white mb-1" />
+                        <span className="text-[10px] text-white font-bold uppercase">Update</span>
+                        <input type="file" accept="image/*" onChange={(e) => handleFileChange(e, 'photo')} className="hidden" />
+                      </label>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="text-center">
-                   <p className={labelClasses}>Official Party Symbol</p>
-                   <div className="relative inline-block group">
-                      <div className="absolute -inset-1 bg-gradient-to-tr from-blue-500/40 to-indigo-500/40 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
-                      <div className="relative w-28 h-28 rounded-full overflow-hidden border-4 border-slate-800 bg-slate-950 flex items-center justify-center transition-all group-hover:border-indigo-500/40">
-                        {symbolPreview ? (
-                          <img src={symbolPreview} alt="Symbol" className="w-full h-full object-cover" />
-                        ) : (
-                          <Plus className="w-8 h-8 text-slate-800" />
-                        )}
-                        <label className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-all flex flex-col items-center justify-center cursor-pointer">
-                          <Upload className="w-5 h-5 text-white mb-0.5" />
-                          <span className="text-[10px] text-white font-bold uppercase">Symbol</span>
-                          <input type="file" accept="image/*" onChange={(e) => handleFileChange(e, 'symbol')} className="hidden" />
-                        </label>
-                      </div>
-                   </div>
+                  <p className={labelClasses}>Official Party Symbol</p>
+                  <div className="relative inline-block group">
+                    <div className="absolute -inset-1 bg-gradient-to-tr from-blue-500/40 to-indigo-500/40 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+                    <div className="relative w-28 h-28 rounded-full overflow-hidden border-4 border-slate-800 bg-slate-950 flex items-center justify-center transition-all group-hover:border-indigo-500/40">
+                      {symbolPreview ? (
+                        <img src={symbolPreview} alt="Symbol" className="w-full h-full object-cover" />
+                      ) : (
+                        <Plus className="w-8 h-8 text-slate-800" />
+                      )}
+                      <label className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-all flex flex-col items-center justify-center cursor-pointer">
+                        <Upload className="w-5 h-5 text-white mb-0.5" />
+                        <span className="text-[10px] text-white font-bold uppercase">Symbol</span>
+                        <input type="file" accept="image/*" onChange={(e) => handleFileChange(e, 'symbol')} className="hidden" />
+                      </label>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -318,65 +318,65 @@ export default function CandidateRegistration() {
 
           {/* Legal / Financial Section */}
           <div className="bg-slate-900/60 border border-slate-800/80 rounded-[40px] p-8 backdrop-blur-xl shadow-2xl">
-             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                   <div className="flex items-center gap-3 mb-6">
-                      <Scale className="w-5 h-5 text-rose-400" />
-                      <h3 className="text-lg font-bold text-white tracking-tight">Legal Disclosures</h3>
-                   </div>
-                   <label className={labelClasses}>Criminal Record History</label>
-                   <input
-                     type="text"
-                     value={form.criminalRecord}
-                     onChange={(e) => update('criminalRecord', e.target.value)}
-                     placeholder="NONE or Case details"
-                     className={`${inputClasses} border-rose-500/20 focus:ring-rose-500/50`}
-                   />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div>
+                <div className="flex items-center gap-3 mb-6">
+                  <Scale className="w-5 h-5 text-rose-400" />
+                  <h3 className="text-lg font-bold text-white tracking-tight">Legal Disclosures</h3>
                 </div>
-                <div>
-                   <div className="flex items-center gap-3 mb-6">
-                      <Wallet className="w-5 h-5 text-emerald-400" />
-                      <h3 className="text-lg font-bold text-white tracking-tight">Asset Declaration</h3>
-                   </div>
-                   <label className={labelClasses}>Declared Net Worth</label>
-                   <input
-                     type="text"
-                     value={form.assetsDeclared}
-                     onChange={(e) => update('assetsDeclared', e.target.value)}
-                     placeholder="e.g. ₹75,00,000 Total Assets"
-                     className={inputClasses}
-                   />
+                <label className={labelClasses}>Criminal Record History</label>
+                <input
+                  type="text"
+                  value={form.criminalRecord}
+                  onChange={(e) => update('criminalRecord', e.target.value)}
+                  placeholder="NONE or Case details"
+                  className={`${inputClasses} border-rose-500/20 focus:ring-rose-500/50`}
+                />
+              </div>
+              <div>
+                <div className="flex items-center gap-3 mb-6">
+                  <Wallet className="w-5 h-5 text-emerald-400" />
+                  <h3 className="text-lg font-bold text-white tracking-tight">Asset Declaration</h3>
                 </div>
-             </div>
+                <label className={labelClasses}>Declared Net Worth</label>
+                <input
+                  type="text"
+                  value={form.assetsDeclared}
+                  onChange={(e) => update('assetsDeclared', e.target.value)}
+                  placeholder="e.g. ₹75,00,000 Total Assets"
+                  className={inputClasses}
+                />
+              </div>
+            </div>
           </div>
 
           {/* Contact Methods */}
           <div className="bg-slate-900/60 border border-slate-800/80 rounded-[40px] p-8 backdrop-blur-xl shadow-2xl">
-             <div className="flex items-center gap-4 mb-8">
-                <div className="p-3 bg-blue-500/10 border border-blue-500/20 rounded-2xl">
-                   <Phone className="w-6 h-6 text-blue-400" />
-                </div>
-                <h2 className="text-xl font-bold text-white tracking-tight">Public Contact Channels</h2>
-             </div>
-             
-             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-               <div className="relative group">
-                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-600 transition-colors group-focus-within:text-blue-400" />
-                  <input type="email" placeholder="Official Email" value={form.contact.email} onChange={(e) => update('contact.email', e.target.value)} className={`${inputClasses} pl-12`} />
-               </div>
-               <div className="relative group">
-                  <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-600 transition-colors group-focus-within:text-blue-400" />
-                  <input type="tel" placeholder="Public Phone" value={form.contact.phone} onChange={(e) => update('contact.phone', e.target.value)} className={`${inputClasses} pl-12`} />
-               </div>
-               <div className="relative group col-span-full">
-                  <Facebook className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-600 transition-colors group-focus-within:text-blue-400" />
-                  <input type="text" placeholder="Facebook Profile URL" value={form.contact.facebook} onChange={(e) => update('contact.facebook', e.target.value)} className={`${inputClasses} pl-12`} />
-               </div>
-               <div className="relative group col-span-full">
-                  <Twitter className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-600 transition-colors group-focus-within:text-blue-400" />
-                  <input type="text" placeholder="Twitter Handle" value={form.contact.twitter} onChange={(e) => update('contact.twitter', e.target.value)} className={`${inputClasses} pl-12`} />
-               </div>
-             </div>
+            <div className="flex items-center gap-4 mb-8">
+              <div className="p-3 bg-blue-500/10 border border-blue-500/20 rounded-2xl">
+                <Phone className="w-6 h-6 text-blue-400" />
+              </div>
+              <h2 className="text-xl font-bold text-white tracking-tight">Public Contact Channels</h2>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="relative group">
+                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-600 transition-colors group-focus-within:text-blue-400" />
+                <input type="email" placeholder="Official Email" value={form.contact.email} onChange={(e) => update('contact.email', e.target.value)} className={`${inputClasses} pl-12`} />
+              </div>
+              <div className="relative group">
+                <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-600 transition-colors group-focus-within:text-blue-400" />
+                <input type="tel" placeholder="Public Phone" value={form.contact.phone} onChange={(e) => update('contact.phone', e.target.value)} className={`${inputClasses} pl-12`} />
+              </div>
+              <div className="relative group col-span-full">
+                <Facebook className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-600 transition-colors group-focus-within:text-blue-400" />
+                <input type="text" placeholder="Facebook Profile URL" value={form.contact.facebook} onChange={(e) => update('contact.facebook', e.target.value)} className={`${inputClasses} pl-12`} />
+              </div>
+              <div className="relative group col-span-full">
+                <Twitter className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-600 transition-colors group-focus-within:text-blue-400" />
+                <input type="text" placeholder="Twitter Handle" value={form.contact.twitter} onChange={(e) => update('contact.twitter', e.target.value)} className={`${inputClasses} pl-12`} />
+              </div>
+            </div>
           </div>
 
           <button
@@ -385,8 +385,8 @@ export default function CandidateRegistration() {
             className="w-full py-6 rounded-[32px] bg-emerald-600 hover:bg-emerald-500 text-white font-black text-xl transition-all shadow-2xl shadow-emerald-900/40 active:scale-[0.98] disabled:opacity-50 group overflow-hidden relative"
           >
             <div className="relative z-10 flex items-center justify-center gap-3">
-               {loading ? 'Processing Protocol...' : 'Submit Verification Data'}
-               {!loading && <ArrowLeft className="w-6 h-6 rotate-180 group-hover:translate-x-2 transition-transform duration-500" />}
+              {loading ? 'Processing Protocol...' : 'Submit Verification Data'}
+              {!loading && <ArrowLeft className="w-6 h-6 rotate-180 group-hover:translate-x-2 transition-transform duration-500" />}
             </div>
             <div className="absolute inset-0 bg-gradient-to-r from-emerald-400/0 via-emerald-400/20 to-emerald-400/0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
           </button>

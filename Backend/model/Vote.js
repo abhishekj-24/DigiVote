@@ -52,18 +52,22 @@ function computeBlockHash(doc) {
   return crypto.createHash('sha256').update(data).digest('hex');
 }
 
-voteSchema.pre('save', async function (next) {
+voteSchema.pre('save', async function () {
   try {
-    if (!this.isNew) {
-      return next();
-    }
+    if (!this.isNew) return;
+    
+    // Use the document's session if it exists (for transactions)
+    const session = this.$session();
     const Vote = mongoose.model('Vote');
-    const lastVote = await Vote.findOne().sort({ _id: -1 }).lean();
+    const lastVote = await Vote.findOne()
+      .sort({ _id: -1 })
+      .session(session)
+      .lean();
+    
     this.previousBlockHash = lastVote ? lastVote.currentBlockHash : '0';
     this.currentBlockHash = computeBlockHash(this);
-    next();
   } catch (err) {
-    next(err);
+    throw err;
   }
 });
 

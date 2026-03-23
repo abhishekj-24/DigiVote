@@ -24,7 +24,7 @@ export default function Intro() {
         <div className="absolute bottom-1/4 -left-20 w-96 h-96 bg-blue-500/10 blur-[120px] rounded-full" />
 
         <div className="max-w-7xl mx-auto px-6 py-12 w-full grid lg:grid-cols-2 gap-16 items-center">
-          
+
           {/* LEFT SIDE: Content */}
           <section className="space-y-8 z-10">
             <div className="space-y-4">
@@ -47,7 +47,7 @@ export default function Intro() {
                 onClick={() => navigate('/voter-login')}
                 className="px-8 py-4 rounded-xl bg-emerald-500 text-slate-950 font-bold text-lg hover:bg-emerald-400 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-[0_20px_40px_rgba(16,185,129,0.3)]"
               >
-                Enter Voting Portal
+                Vote Now
               </button>
               <button
                 onClick={() => navigate('/help-desk')}
@@ -57,37 +57,26 @@ export default function Intro() {
               </button>
             </div>
 
-            {/* Trust Badges */}
-            <div className="pt-4 flex items-center gap-6 border-t border-slate-800">
-              <div className="flex flex-col">
-                <span className="text-2xl font-bold text-white">99.9%</span>
-                <span className="text-xs text-slate-500 uppercase font-bold tracking-tighter">Uptime</span>
-              </div>
-              <div className="w-px h-8 bg-slate-800" />
-              <div className="flex flex-col">
-                <span className="text-2xl font-bold text-white">AES-256</span>
-                <span className="text-xs text-slate-500 uppercase font-bold tracking-tighter">Encryption</span>
-              </div>
-            </div>
+
           </section>
 
           {/* RIGHT SIDE: Bright Visual Image */}
           <section className="relative flex justify-center items-center lg:justify-end">
             {/* Massive Outer Glow */}
             <div className="absolute inset-0 bg-emerald-500/20 blur-[100px] rounded-full scale-75 animate-pulse" />
-            
+
             {/* Visual Container */}
             <div className="relative group flex items-center justify-center">
               {/* Spinning Ring (Decorative) */}
               <div className="absolute inset-0 border-2 border-dashed border-emerald-500/20 rounded-full animate-[spin_20s_linear_infinite]" />
-              
+
               {/* Main Card */}
               <div className="relative z-10 w-80 h-80 sm:w-[450px] sm:h-[450px] rounded-[4rem] bg-gradient-to-br from-slate-900 to-slate-950 border border-emerald-400/40 shadow-[0_0_60px_rgba(16,185,129,0.25)] overflow-hidden flex items-center justify-center group-hover:border-emerald-400 transition-colors duration-500">
-                
+
                 {/* Internal Light Rays */}
                 <div className="absolute -top-20 -left-20 w-64 h-64 bg-emerald-400/20 blur-3xl rounded-full" />
                 <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-emerald-500/20 blur-3xl rounded-full" />
-                
+
                 {/* The Logo (Brighter) */}
                 <div className="relative p-12 bg-white/5 rounded-full backdrop-blur-sm border border-white/10 shadow-2xl transition-transform duration-700 group-hover:scale-110">
                   <img
@@ -96,7 +85,7 @@ export default function Intro() {
                     className="w-200 h-auto sm:w-64 sm:h-64 object-cover brightness-125 contrast-110 drop-shadow-[0_0_40px_rgba(52,211,153,0.7)]"
                   />
                 </div>
-            
+
               </div>
 
               {/* Orbital Badge (outside) */}

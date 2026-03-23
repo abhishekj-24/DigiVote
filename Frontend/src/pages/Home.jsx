@@ -147,21 +147,19 @@ export default function Home() {
                     {votingOpen
                       ? t.electionLive || 'Election is live'
                       : votingNotStarted
-                      ? t.electionScheduled || 'Election scheduled'
-                      : t.electionClosed || 'Election closed'}
+                        ? t.electionScheduled || 'Election scheduled'
+                        : t.electionClosed || 'Election closed'}
                   </p>
                 </div>
                 <span
-                  className={`mt-1 inline-flex items-center gap-1 rounded-full px-2 py-1 text-[10px] font-semibold ${
-                    votingOpen
+                  className={`mt-1 inline-flex items-center gap-1 rounded-full px-2 py-1 text-[10px] font-semibold ${votingOpen
                       ? 'bg-emerald-500/15 text-emerald-300 border border-emerald-400/60'
                       : 'bg-slate-900 text-slate-200 border border-slate-600'
-                  }`}
+                    }`}
                 >
                   <span
-                    className={`h-1.5 w-1.5 rounded-full ${
-                      votingOpen ? 'bg-emerald-400 animate-pulse' : 'bg-slate-400'
-                    }`}
+                    className={`h-1.5 w-1.5 rounded-full ${votingOpen ? 'bg-emerald-400 animate-pulse' : 'bg-slate-400'
+                      }`}
                   />
                   {votingOpen ? 'LIVE' : 'SYNCED'}
                 </span>

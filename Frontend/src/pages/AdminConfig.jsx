@@ -89,8 +89,8 @@ export default function AdminConfig() {
               <p className="text-slate-400 mt-1 text-sm">Configure system parameters and manage registration.</p>
             </div>
             <button
-               onClick={() => navigate('/candidate-registration')}
-               className="flex items-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-medium transition-all shadow-lg shadow-emerald-900/20 active:scale-95"
+              onClick={() => navigate('/candidate-registration')}
+              className="flex items-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-medium transition-all shadow-lg shadow-emerald-900/20 active:scale-95"
             >
               <UserPlus className="w-4 h-4" />
               Register Candidate
@@ -101,10 +101,10 @@ export default function AdminConfig() {
             {/* Election Control Section */}
             <div className="bg-slate-900/50 border border-slate-800 rounded-3xl p-8 backdrop-blur-sm">
               <div className="flex items-center gap-3 mb-6">
-                 <LayoutDashboard className="w-5 h-5 text-emerald-400" />
-                 <h2 className="text-xl font-semibold">General Status</h2>
+                <LayoutDashboard className="w-5 h-5 text-emerald-400" />
+                <h2 className="text-xl font-semibold">General Status</h2>
               </div>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-medium text-slate-400 mb-2">System Election Status</label>
@@ -121,10 +121,10 @@ export default function AdminConfig() {
                   </select>
                 </div>
                 <div className="flex items-end">
-                   <div className="p-4 rounded-xl bg-slate-950/50 border border-slate-800 w-full">
-                      <p className="text-xs text-slate-500 uppercase tracking-widest font-semibold mb-1">Current Visibility</p>
-                      <p className="text-sm text-emerald-400 font-medium italic">Voter registration is always open</p>
-                   </div>
+                  <div className="p-4 rounded-xl bg-slate-950/50 border border-slate-800 w-full">
+                    <p className="text-xs text-slate-500 uppercase tracking-widest font-semibold mb-1">Current Visibility</p>
+                    <p className="text-sm text-emerald-400 font-medium italic">Voter registration is always open</p>
+                  </div>
                 </div>
               </div>
             </div>
