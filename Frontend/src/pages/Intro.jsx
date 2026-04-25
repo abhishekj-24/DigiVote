@@ -1,11 +1,14 @@
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useServerTime } from '../hooks/useServerTime';
 
 const DIGIVOTE_LOGO_URL = "https://drive.google.com/thumbnail?id=1naSUDeBakElU24rHJ56PkLzQbS5K8g7g";
 
 export default function Intro() {
   const navigate = useNavigate();
   const { t } = useLanguage();
+  const { electionInProgress } = useServerTime();
+  const resultDisabled = electionInProgress;
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-50 flex flex-col overflow-x-hidden">
@@ -51,9 +54,11 @@ export default function Intro() {
               </button>
               <button
                 onClick={() => navigate('/results')}
-                className="px-8 py-4 rounded-xl bg-blue-600 text-white font-bold text-lg hover:bg-blue-500 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-[0_20px_40px_rgba(37,99,235,0.35)]"
+                disabled={resultDisabled}
+                title={resultDisabled ? 'Results are available after voting ends.' : 'View election results'}
+                className="px-8 py-4 rounded-xl bg-blue-600 text-white font-bold text-lg hover:bg-blue-500 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-[0_20px_40px_rgba(37,99,235,0.35)] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:bg-blue-600"
               >
-                Result
+                {resultDisabled ? 'Result Locked' : 'Result'}
               </button>
               <button
                 onClick={() => navigate('/help-desk')}

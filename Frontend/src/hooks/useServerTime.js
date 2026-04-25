@@ -47,6 +47,7 @@ export function useServerTime() {
     config?.endTime &&
     now >= new Date(config.startTime) &&
     now <= new Date(config.endTime);
+  const electionInProgress = config?.electionStatus === 'voting' || votingOpen;
   const votingNotStarted = config?.startTime && now < new Date(config.startTime);
   const countdownToStart = votingNotStarted && config?.startTime
     ? new Date(config.startTime) - now
@@ -58,6 +59,7 @@ export function useServerTime() {
     loading,
     registrationOpen: !!registrationOpen,
     votingOpen: !!votingOpen,
+    electionInProgress: !!electionInProgress,
     votingNotStarted: !!votingNotStarted,
     countdownToStart,
     refetch: fetchTime,
